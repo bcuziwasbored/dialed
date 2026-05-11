@@ -58,8 +58,8 @@ export default function DataManagement() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold">Data</h1>
-        <p className="text-stone-500 text-sm">Back up, restore, and configure.</p>
+        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight">Data</h1>
+        <p className="text-stone-500 text-sm mt-1">Back up, restore, and configure.</p>
       </header>
 
       {message && (
@@ -78,13 +78,13 @@ export default function DataManagement() {
         <div className="flex flex-wrap gap-3">
           <button
             onClick={handleExport}
-            className="px-4 py-2 bg-amber-700 text-white rounded font-medium hover:bg-amber-800"
+            className="px-5 py-2.5 bg-amber-800 text-white rounded-full font-medium hover:bg-amber-900 shadow-sm"
           >
             Export JSON
           </button>
           <button
             onClick={handleImportClick}
-            className="px-4 py-2 bg-stone-800 text-white rounded font-medium hover:bg-stone-900"
+            className="px-5 py-2.5 bg-stone-800 text-white rounded-full font-medium hover:bg-stone-900 shadow-sm"
           >
             Import JSON
           </button>
@@ -104,7 +104,7 @@ export default function DataManagement() {
               min={1}
               value={settings.breville_grind_min}
               onChange={(e) => setSettings({ breville_grind_min: Number(e.target.value) || 1 })}
-              className="w-full px-3 py-2 border border-stone-300 rounded bg-white tabular-nums"
+              className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white tabular-nums"
             />
           </label>
           <label className="block">
@@ -114,7 +114,7 @@ export default function DataManagement() {
               min={1}
               value={settings.breville_grind_max}
               onChange={(e) => setSettings({ breville_grind_max: Number(e.target.value) || 16 })}
-              className="w-full px-3 py-2 border border-stone-300 rounded bg-white tabular-nums"
+              className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white tabular-nums"
             />
           </label>
         </div>
@@ -123,7 +123,7 @@ export default function DataManagement() {
       <Section title="Danger zone">
         <button
           onClick={handleClear}
-          className={`px-4 py-2 rounded font-medium text-white ${
+          className={`px-5 py-2.5 rounded-full font-medium text-white shadow-sm ${
             clearStage === 0
               ? 'bg-stone-600 hover:bg-stone-700'
               : clearStage === 1
@@ -143,8 +143,8 @@ export default function DataManagement() {
 
 function Section({ title, children }) {
   return (
-    <section className="bg-white border border-stone-200 rounded-lg p-5 space-y-3">
-      <h2 className="text-sm uppercase tracking-wider text-stone-500 font-medium">{title}</h2>
+    <section className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-6 space-y-3">
+      <h2 className="text-xs uppercase tracking-[0.2em] text-stone-500 font-medium">{title}</h2>
       {children}
     </section>
   )

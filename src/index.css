@@ -1,10 +1,21 @@
 @import "tailwindcss";
 
+:root {
+  --cream: #f5efe4;
+  --cream-soft: #faf6ee;
+  --espresso: #3a2317;
+}
+
+body {
+  background-color: var(--cream);
+  font-feature-settings: 'cv11', 'ss01';
+}
+
 input[type="range"] {
   appearance: none;
   -webkit-appearance: none;
   height: 0.5rem;
-  background-color: #e7e5e4;
+  background-color: #e7e0d2;
   border-radius: 9999px;
   cursor: pointer;
 }
@@ -15,7 +26,8 @@ input[type="range"]::-webkit-slider-thumb {
   height: 1.25rem;
   background-color: #b45309;
   border-radius: 9999px;
-  border: 0;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
 input[type="range"]::-moz-range-thumb {
@@ -23,6 +35,16 @@ input[type="range"]::-moz-range-thumb {
   height: 1.25rem;
   background-color: #b45309;
   border-radius: 9999px;
-  border: 0;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+}
+
+/* Tabular numerals on numeric inputs so values line up */
+input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="date"], input[type="number"], select, textarea {
+  font-feature-settings: inherit;
 }

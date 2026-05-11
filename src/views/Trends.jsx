@@ -47,11 +47,11 @@ export default function Trends() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold">Trends</h1>
-        <p className="text-stone-500 text-sm">How your dial-in changes over time.</p>
+        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight">Trends</h1>
+        <p className="text-stone-500 text-sm mt-1">How your dial-in changes over time.</p>
       </header>
 
-      <div className="bg-white border border-stone-200 rounded-lg p-4 flex flex-wrap gap-4 items-end">
+      <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-5 flex flex-wrap gap-4 items-end">
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Method</label>
           <div className="flex gap-1">
@@ -64,7 +64,7 @@ export default function Trends() {
           <select
             value={beanId}
             onChange={(e) => setBeanId(e.target.value)}
-            className="w-full px-3 py-2 border border-stone-300 rounded bg-white"
+            className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white"
           >
             <option value="all">All beans</option>
             {beansWithBrews.map((b) => (
@@ -82,10 +82,10 @@ export default function Trends() {
       ) : (
         <>
           {best && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <div className="text-xs uppercase tracking-wider text-amber-700 font-medium mb-2">Best brew</div>
+            <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-amber-700 font-medium mb-2">Best brew</div>
               <div className="flex items-baseline justify-between gap-2 mb-1">
-                <span className="font-medium text-stone-900">
+                <span className="font-serif text-lg text-stone-900">
                   {beans.find((b) => b.id === best.bean_id)?.name || 'Unknown'}
                 </span>
                 <Stars value={best.overall_rating} readOnly size="sm" />
@@ -158,8 +158,8 @@ export default function Trends() {
 
 function ChartCard({ title, children }) {
   return (
-    <div className="bg-white border border-stone-200 rounded-lg p-4">
-      <h3 className="text-sm font-medium text-stone-700 mb-3">{title}</h3>
+    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-5">
+      <h3 className="text-xs uppercase tracking-[0.2em] text-stone-500 font-medium mb-4">{title}</h3>
       {children}
     </div>
   )
@@ -185,8 +185,8 @@ function Pill({ active, onClick, children }) {
     <button
       type="button"
       onClick={onClick}
-      className={`px-3 py-2 rounded font-medium text-sm ${
-        active ? 'bg-stone-800 text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+      className={`px-4 py-2 rounded-full font-medium text-sm transition-colors ${
+        active ? 'bg-stone-900 text-white shadow-sm' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
       }`}
     >
       {children}

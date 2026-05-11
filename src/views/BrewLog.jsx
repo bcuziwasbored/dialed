@@ -29,20 +29,20 @@ export default function BrewLog() {
 
   return (
     <div className="space-y-5">
-      <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold">Brew log</h1>
-        <span className="text-sm text-stone-500">{filtered.length} brew{filtered.length === 1 ? '' : 's'}</span>
+      <header className="flex flex-wrap items-baseline justify-between gap-3">
+        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight">Brews</h1>
+        <span className="text-sm text-stone-500 tabular-nums">{filtered.length} brew{filtered.length === 1 ? '' : 's'}</span>
       </header>
 
-      <div className="flex gap-1">
+      <div className="flex gap-1.5">
         {FILTERS.map((f) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
-            className={`px-3 py-1 rounded-full text-sm ${
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
               filter === f.value
-                ? 'bg-stone-800 text-white'
-                : 'bg-white border border-stone-300 text-stone-700 hover:bg-stone-100'
+                ? 'bg-stone-900 text-white shadow-sm'
+                : 'bg-white/80 border border-stone-300/70 text-stone-700 hover:bg-white'
             }`}
           >
             {f.label}
@@ -56,7 +56,7 @@ export default function BrewLog() {
           message={filter === 'all' ? 'Add a bean, then log your first shot.' : `No ${filter} brews yet.`}
         />
       ) : (
-        <div className="bg-white border border-stone-200 rounded-lg overflow-hidden">
+        <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm overflow-hidden">
           {filtered.map((brew) => (
             <BrewRow
               key={brew.id}
@@ -74,17 +74,17 @@ export default function BrewLog() {
 }
 
 function BrewRow({ brew, bean, expanded, onToggle, onDelete }) {
-  const accent = brew.brew_method === 'espresso' ? 'bg-amber-900' : 'bg-sky-800'
+  const accent = brew.brew_method === 'espresso' ? 'bg-amber-800' : 'bg-sky-700'
   return (
     <div className="border-b border-stone-100 last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-50 text-left"
+        className="w-full flex items-center gap-3 px-5 py-4 hover:bg-stone-50/70 text-left"
       >
         <div className={`w-1.5 h-12 rounded-full ${accent} shrink-0`} />
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline justify-between gap-2">
-            <span className="font-medium text-stone-900 truncate">
+            <span className="font-serif text-lg text-stone-900 truncate">
               {bean?.name || 'Unknown bean'}
             </span>
             <span className="text-xs text-stone-500 shrink-0 tabular-nums">
@@ -102,18 +102,18 @@ function BrewRow({ brew, bean, expanded, onToggle, onDelete }) {
       </button>
 
       {expanded && (
-        <div className="bg-stone-50 border-t border-stone-200 px-4 py-4 space-y-3">
+        <div className="bg-stone-50/70 border-t border-stone-200/70 px-5 py-5 space-y-4">
           <BrewDetails brew={brew} />
           <div className="flex gap-2">
             <button
               onClick={() => navigate(`${brew.brew_method === 'espresso' ? '/log-espresso' : '/log-drip'}?clone=${brew.id}`)}
-              className="text-sm px-3 py-1.5 bg-stone-800 text-white rounded hover:bg-stone-900"
+              className="text-sm px-4 py-1.5 bg-stone-800 text-white rounded-full hover:bg-stone-900 shadow-sm"
             >
               Clone & log new
             </button>
             <button
               onClick={onDelete}
-              className="text-sm px-3 py-1.5 text-rose-700 rounded hover:bg-rose-50 ml-auto"
+              className="text-sm px-4 py-1.5 text-rose-700 rounded-full hover:bg-rose-50 ml-auto"
             >
               Delete
             </button>
@@ -152,7 +152,7 @@ function BrewDetails({ brew }) {
         ))}
       </dl>
       {brew.notes && (
-        <p className="text-sm text-stone-700 italic bg-white border border-stone-200 rounded px-3 py-2">
+        <p className="text-sm text-stone-700 italic bg-white border border-stone-200/70 rounded-xl px-4 py-3">
           "{brew.notes}"
         </p>
       )}

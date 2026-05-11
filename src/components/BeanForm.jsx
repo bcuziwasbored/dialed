@@ -34,8 +34,8 @@ export default function BeanForm({ initial, onSave, onCancel }) {
   }
 
   return (
-    <form onSubmit={submit} className="bg-white border border-stone-200 rounded-lg p-5 space-y-4">
-      <h3 className="text-lg font-medium">{initial?.id ? 'Edit bean' : 'Add bean'}</h3>
+    <form onSubmit={submit} className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-6 space-y-4">
+      <h3 className="font-serif text-xl text-stone-900">{initial?.id ? 'Edit bean' : 'Add bean'}</h3>
 
       <div className="grid sm:grid-cols-2 gap-4">
         <Field label="Name *">
@@ -116,14 +116,14 @@ export default function BeanForm({ initial, onSave, onCancel }) {
       <div className="flex gap-2 pt-2">
         <button
           type="submit"
-          className="px-4 py-2 bg-amber-700 text-white rounded font-medium hover:bg-amber-800"
+          className="px-5 py-2.5 bg-amber-800 text-white rounded-full font-medium hover:bg-amber-900 shadow-sm"
         >
           Save
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 text-stone-600 rounded hover:bg-stone-100"
+          className="px-5 py-2.5 text-stone-600 rounded-full hover:bg-stone-200/50"
         >
           Cancel
         </button>
@@ -132,7 +132,7 @@ export default function BeanForm({ initial, onSave, onCancel }) {
   )
 }
 
-const inputCls = 'w-full px-3 py-2 border border-stone-300 rounded bg-white focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600'
+const inputCls = 'w-full px-3 py-2 border border-stone-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600'
 
 function Field({ label, children }) {
   return (

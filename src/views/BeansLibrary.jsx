@@ -51,12 +51,12 @@ export default function BeansLibrary() {
 
   return (
     <div className="space-y-5">
-      <header className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold">Beans</h1>
+      <header className="flex flex-wrap items-baseline justify-between gap-3">
+        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight">Beans</h1>
         {!editing && (
           <button
             onClick={() => setEditing({})}
-            className="px-4 py-2 bg-amber-700 text-white rounded font-medium hover:bg-amber-800"
+            className="px-5 py-2.5 bg-amber-800 text-white rounded-full font-medium hover:bg-amber-900 shadow-sm"
           >
             + Add bean
           </button>
@@ -71,15 +71,15 @@ export default function BeansLibrary() {
         />
       )}
 
-      <div className="flex gap-1 flex-wrap">
+      <div className="flex gap-1.5 flex-wrap">
         {FILTERS.map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-3 py-1 rounded-full text-sm capitalize ${
+            className={`px-4 py-1.5 rounded-full text-sm capitalize font-medium transition-colors ${
               filter === f
-                ? 'bg-stone-800 text-white'
-                : 'bg-white border border-stone-300 text-stone-700 hover:bg-stone-100'
+                ? 'bg-stone-900 text-white shadow-sm'
+                : 'bg-white/80 border border-stone-300/70 text-stone-700 hover:bg-white'
             }`}
           >
             {f}
@@ -95,7 +95,7 @@ export default function BeansLibrary() {
             beans.length === 0 && !editing ? (
               <button
                 onClick={() => setEditing({})}
-                className="px-4 py-2 bg-amber-700 text-white rounded font-medium hover:bg-amber-800"
+                className="px-5 py-2.5 bg-amber-800 text-white rounded-full font-medium hover:bg-amber-900 shadow-sm"
               >
                 + Add bean
               </button>

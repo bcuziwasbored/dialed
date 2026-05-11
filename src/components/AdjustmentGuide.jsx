@@ -3,16 +3,16 @@ import { useState } from 'react'
 export default function AdjustmentGuide({ method = 'espresso' }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="bg-white border border-stone-200 rounded-lg">
+    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm overflow-hidden">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-stone-50"
+        className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-stone-50/70"
       >
         <span className="font-medium text-stone-800">Adjustment guide</span>
-        <span className="text-stone-500 text-sm">{open ? '−' : '+'}</span>
+        <span className="text-stone-500 text-lg w-5 text-center">{open ? '−' : '+'}</span>
       </button>
       {open && (
-        <div className="px-4 pb-4 space-y-3 text-sm text-stone-700">
+        <div className="px-5 pb-5 space-y-3 text-sm text-stone-700">
           {method === 'espresso' ? <EspressoGuide /> : <DripGuide />}
         </div>
       )}

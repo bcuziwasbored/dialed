@@ -117,8 +117,9 @@ export default function LogDrip({ cloneId }) {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold">Log drip brew</h1>
-        <p className="text-stone-500 text-sm">Fellow Aiden + Opus (drip)</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-sky-800 font-medium">Drip</p>
+        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight mt-1">Brew a cup</h1>
+        <p className="text-stone-500 text-sm mt-1">Fellow Aiden + Opus (drip)</p>
       </header>
 
       <Card>
@@ -173,7 +174,7 @@ export default function LogDrip({ cloneId }) {
             <input type="number" step={1} min={0} value={form.water_grams} onChange={setNum('water_grams')} className={inputCls + ' tabular-nums'} />
           </Field>
           <Field label="Ratio">
-            <div className="px-3 py-2 rounded bg-stone-100 text-stone-700 tabular-nums">
+            <div className="px-3 py-2 rounded-lg bg-sky-50/70 border border-sky-100 text-stone-800 tabular-nums">
               {formatRatio(currentRatio)}
             </div>
           </Field>
@@ -219,22 +220,22 @@ export default function LogDrip({ cloneId }) {
       </Card>
 
       {hints.length > 0 && (
-        <div className="bg-sky-50 border border-sky-200 rounded-lg p-4 space-y-1">
-          <div className="text-xs uppercase tracking-wider text-sky-700 font-medium mb-1">Next brew</div>
+        <div className="bg-sky-50/80 border border-sky-200/80 rounded-2xl p-5 space-y-1">
+          <div className="text-xs uppercase tracking-[0.2em] text-sky-700 font-medium mb-1">Next brew</div>
           {hints.map((h, i) => (
             <p key={i} className="text-sm text-sky-900">→ {h.text}</p>
           ))}
         </div>
       )}
 
-      <div className="flex flex-wrap gap-2 sticky bottom-0 bg-stone-50 py-3 -mx-4 px-4 border-t border-stone-200">
-        <button onClick={() => save({ clone: false })} className="px-5 py-2.5 bg-sky-700 text-white rounded font-medium hover:bg-sky-800">
+      <div className="flex flex-wrap gap-2 sticky bottom-0 bg-[#f5efe4]/95 backdrop-blur py-4 -mx-4 px-4 border-t border-stone-200/60">
+        <button onClick={() => save({ clone: false })} className="px-6 py-2.5 bg-sky-800 text-white rounded-full font-medium hover:bg-sky-900 shadow-sm">
           Save
         </button>
-        <button onClick={() => save({ clone: true })} className="px-5 py-2.5 bg-stone-800 text-white rounded font-medium hover:bg-stone-900">
+        <button onClick={() => save({ clone: true })} className="px-6 py-2.5 bg-stone-800 text-white rounded-full font-medium hover:bg-stone-900 shadow-sm">
           Save & Clone
         </button>
-        <button onClick={() => navigate('/')} className="px-5 py-2.5 text-stone-600 rounded hover:bg-stone-100">
+        <button onClick={() => navigate('/')} className="px-6 py-2.5 text-stone-600 rounded-full hover:bg-stone-200/50">
           Cancel
         </button>
       </div>
@@ -242,7 +243,7 @@ export default function LogDrip({ cloneId }) {
   )
 }
 
-const inputCls = 'w-full px-3 py-2 border border-stone-300 rounded bg-white focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600'
+const inputCls = 'w-full px-3 py-2 border border-stone-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600'
 
 function Field({ label, children }) {
   return (
@@ -255,8 +256,8 @@ function Field({ label, children }) {
 
 function Card({ title, children }) {
   return (
-    <div className="bg-white border border-stone-200 rounded-lg p-5 space-y-4">
-      {title && <h2 className="text-sm uppercase tracking-wider text-stone-500 font-medium">{title}</h2>}
+    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-6 space-y-4">
+      {title && <h2 className="text-xs uppercase tracking-[0.2em] text-stone-500 font-medium">{title}</h2>}
       {children}
     </div>
   )

@@ -4,10 +4,10 @@ import { formatDate } from '../utils/dates.js'
 
 export default function BeanCard({ bean, brewCount = 0, onEdit, onDelete, onSetActive, isActiveEspresso, isActiveDrip }) {
   return (
-    <div className="bg-white border border-stone-200 rounded-lg p-4 flex flex-col gap-2">
+    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-5 flex flex-col gap-2">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="font-medium text-stone-900 leading-tight">{bean.name}</h3>
+          <h3 className="font-serif text-lg text-stone-900 leading-tight">{bean.name}</h3>
           {bean.roaster && <div className="text-sm text-stone-500">{bean.roaster}</div>}
         </div>
         <span className={`text-xs px-2 py-0.5 rounded-full border ${statusStyle(bean.status)}`}>
