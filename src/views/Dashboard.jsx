@@ -89,9 +89,9 @@ function ActiveSlot({ bean, method }) {
       </div>
     )
   }
-  const accent = method === 'espresso' ? 'border-amber-900' : 'border-sky-800'
+  const accent = method === 'espresso' ? 'border-l-amber-900' : 'border-l-sky-800'
   return (
-    <div className={`bg-white border-l-4 ${accent} border-y border-r border-stone-200 rounded-lg p-4`}>
+    <div className={`bg-white border border-stone-200 border-l-4 ${accent} rounded-lg p-4`}>
       <div className="text-xs uppercase tracking-wider text-stone-500 mb-1">{METHOD_LABEL[method]}</div>
       <h3 className="font-medium text-stone-900">{bean.name}</h3>
       {bean.roaster && <div className="text-sm text-stone-500 mb-2">{bean.roaster}</div>}
