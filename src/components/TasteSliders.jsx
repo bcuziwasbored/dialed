@@ -2,8 +2,8 @@ function Slider({ label, value, onChange, min, max, step = 1, leftLabel, rightLa
   return (
     <div>
       <div className="flex items-center justify-between mb-1">
-        <label className="text-sm font-medium text-stone-700">{label}</label>
-        <span className="text-sm text-stone-500 tabular-nums">{value ?? '—'}</span>
+        <label className="text-sm font-medium text-walnut">{label}</label>
+        <span className="text-sm text-camel tabular-nums">{value ?? '—'}</span>
       </div>
       <input
         type="range"
@@ -14,7 +14,7 @@ function Slider({ label, value, onChange, min, max, step = 1, leftLabel, rightLa
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-full"
       />
-      <div className="flex justify-between text-xs text-stone-500 mt-1">
+      <div className="flex justify-between text-xs text-camel mt-1">
         <span>{leftLabel}</span>
         {centerLabel && <span>{centerLabel}</span>}
         <span>{rightLabel}</span>

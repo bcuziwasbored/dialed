@@ -3,16 +3,16 @@ import { useState } from 'react'
 export default function AdjustmentGuide({ method = 'espresso' }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm overflow-hidden">
+    <div className="bg-cream-pale rounded-2xl border border-walnut/10 overflow-hidden">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-stone-50/70"
+        className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-cream-soft/60"
       >
-        <span className="font-medium text-stone-800">Adjustment guide</span>
-        <span className="text-stone-500 text-lg w-5 text-center">{open ? '−' : '+'}</span>
+        <span className="font-medium text-walnut">Adjustment guide</span>
+        <span className="text-camel text-lg w-5 text-center">{open ? '−' : '+'}</span>
       </button>
       {open && (
-        <div className="px-5 pb-5 space-y-3 text-sm text-stone-700">
+        <div className="px-5 pb-5 space-y-3 text-sm text-walnut">
           {method === 'espresso' ? <EspressoGuide /> : <DripGuide />}
         </div>
       )}
@@ -67,7 +67,7 @@ function DripGuide() {
 function Section({ title, children }) {
   return (
     <div>
-      <h4 className="font-medium text-stone-900 mb-0.5">{title}</h4>
+      <h4 className="font-medium text-walnut mb-0.5">{title}</h4>
       {children}
     </div>
   )

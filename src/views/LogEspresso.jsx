@@ -68,7 +68,7 @@ export default function LogEspresso({ cloneId }) {
         action={
           <button
             onClick={() => navigate('/beans')}
-            className="px-4 py-2 bg-amber-700 text-white rounded font-medium hover:bg-amber-800"
+            className="px-5 py-2.5 bg-walnut text-cream-pale rounded-full font-medium hover:bg-saddle"
           >
             Go to Beans
           </button>
@@ -118,8 +118,8 @@ export default function LogEspresso({ cloneId }) {
   return (
     <div className="space-y-6">
       <header>
-        <p className="text-xs uppercase tracking-[0.2em] text-amber-800 font-medium">Espresso</p>
-        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight mt-1">Log a shot</h1>
+        <p className="text-xs uppercase tracking-[0.2em] text-saddle font-medium">Espresso</p>
+        <h1 className="font-serif italic text-4xl text-walnut tracking-tight mt-1">Log a shot</h1>
       </header>
 
       <Card>
@@ -176,15 +176,15 @@ export default function LogEspresso({ cloneId }) {
             <input type="number" step={0.1} min={0} value={form.yield_grams} onChange={setNum('yield_grams')} className={inputCls + ' tabular-nums'} />
           </Field>
           <Field label="Ratio">
-            <div className="px-3 py-2 rounded-lg bg-amber-50/70 border border-amber-100 text-stone-800 tabular-nums">
-              {formatRatio(currentRatio)} <span className="text-stone-500 text-sm">(target 1:2.00)</span>
+            <div className="px-3 py-2 rounded-lg bg-cream-soft border border-walnut/10 text-walnut tabular-nums">
+              {formatRatio(currentRatio)} <span className="text-camel text-sm">(target 1:2.00)</span>
             </div>
           </Field>
         </div>
 
         <Field label="Extraction time">
           <Stopwatch value={form.extraction_time_sec} onChange={set('extraction_time_sec')} />
-          <p className="text-xs text-stone-500 mt-1">Target 25–30s</p>
+          <p className="text-xs text-camel mt-1">Target 25–30s</p>
         </Field>
 
         <label className="flex items-center gap-2 cursor-pointer">
@@ -192,9 +192,9 @@ export default function LogEspresso({ cloneId }) {
             type="checkbox"
             checked={form.pressure_ok}
             onChange={(e) => set('pressure_ok')(e.target.checked)}
-            className="w-4 h-4 accent-amber-700"
+            className="w-4 h-4 accent-saddle"
           />
-          <span className="text-sm text-stone-700">Pressure gauge in range</span>
+          <span className="text-sm text-walnut">Pressure gauge in range</span>
         </label>
       </Card>
 
@@ -219,30 +219,30 @@ export default function LogEspresso({ cloneId }) {
       </Card>
 
       {hints.length > 0 && (
-        <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-5 space-y-1">
-          <div className="text-xs uppercase tracking-[0.2em] text-amber-700 font-medium mb-1">Next shot</div>
+        <div className="bg-camel/15 border border-camel/30 rounded-2xl p-5 space-y-1">
+          <div className="text-xs uppercase tracking-[0.2em] text-saddle font-medium mb-1">Next shot</div>
           {hints.map((h, i) => (
-            <p key={i} className="text-sm text-amber-900">→ {h.text}</p>
+            <p key={i} className="text-sm text-walnut">→ {h.text}</p>
           ))}
         </div>
       )}
 
-      <div className="flex flex-wrap gap-2 sticky bottom-0 bg-[#f5efe4]/95 backdrop-blur py-4 -mx-4 px-4 border-t border-stone-200/60">
+      <div className="flex flex-wrap gap-2 sticky bottom-0 bg-cream/95 backdrop-blur py-4 -mx-4 px-4 border-t border-walnut/10">
         <button
           onClick={() => save({ clone: false })}
-          className="px-6 py-2.5 bg-amber-800 text-white rounded-full font-medium hover:bg-amber-900 shadow-sm"
+          className="px-6 py-2.5 bg-walnut text-cream-pale rounded-full font-medium hover:bg-saddle"
         >
           Save
         </button>
         <button
           onClick={() => save({ clone: true })}
-          className="px-6 py-2.5 bg-stone-800 text-white rounded-full font-medium hover:bg-stone-900 shadow-sm"
+          className="px-6 py-2.5 bg-ebony text-cream-pale rounded-full font-medium hover:bg-charcoal"
         >
           Save & Clone
         </button>
         <button
           onClick={() => navigate('/')}
-          className="px-6 py-2.5 text-stone-600 rounded-full hover:bg-stone-200/50"
+          className="px-6 py-2.5 text-toffee rounded-full hover:bg-cream-soft"
         >
           Cancel
         </button>
@@ -251,12 +251,12 @@ export default function LogEspresso({ cloneId }) {
   )
 }
 
-const inputCls = 'w-full px-3 py-2 border border-stone-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600'
+const inputCls = 'w-full px-3 py-2 border border-walnut/20 rounded-lg bg-cream-pale text-walnut focus:outline-none focus:ring-2 focus:ring-saddle/40 focus:border-saddle'
 
 function Field({ label, children }) {
   return (
     <label className="block">
-      <span className="block text-sm font-medium text-stone-700 mb-1">{label}</span>
+      <span className="block text-sm font-medium text-walnut mb-1">{label}</span>
       {children}
     </label>
   )
@@ -264,8 +264,8 @@ function Field({ label, children }) {
 
 function Card({ title, children }) {
   return (
-    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-6 space-y-4">
-      {title && <h2 className="text-xs uppercase tracking-[0.2em] text-stone-500 font-medium">{title}</h2>}
+    <div className="bg-cream-pale rounded-2xl border border-walnut/10 p-6 space-y-4">
+      {title && <h2 className="text-xs uppercase tracking-[0.2em] text-camel font-medium">{title}</h2>}
       {children}
     </div>
   )
@@ -278,8 +278,8 @@ function Pill({ active, onClick, children }) {
       onClick={onClick}
       className={`px-4 py-2 rounded-full font-medium text-sm transition-colors ${
         active
-          ? 'bg-amber-900 text-amber-50 shadow-sm'
-          : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+          ? 'bg-walnut text-cream-pale'
+          : 'bg-cream-soft text-walnut/80 hover:bg-cream'
       }`}
     >
       {children}

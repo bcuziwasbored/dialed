@@ -44,27 +44,29 @@ export default function Trends() {
     return beans.filter((b) => ids.has(b.id))
   }, [beans, brews, method])
 
+  const lineColor = method === 'espresso' ? '#7f4f24' : '#656d4a'
+
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="font-serif italic text-4xl text-stone-900 tracking-tight">Trends</h1>
-        <p className="text-stone-500 text-sm mt-1">How your dial-in changes over time.</p>
+        <h1 className="font-serif italic text-4xl text-walnut tracking-tight">Trends</h1>
+        <p className="text-toffee text-sm mt-1">How your dial-in changes over time.</p>
       </header>
 
-      <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-5 flex flex-wrap gap-4 items-end">
+      <div className="bg-cream-pale rounded-2xl border border-walnut/10 p-5 flex flex-wrap gap-4 items-end">
         <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1">Method</label>
+          <label className="block text-sm font-medium text-walnut mb-1">Method</label>
           <div className="flex gap-1">
             <Pill active={method === 'espresso'} onClick={() => setMethod('espresso')}>Espresso</Pill>
             <Pill active={method === 'drip'} onClick={() => setMethod('drip')}>Drip</Pill>
           </div>
         </div>
         <div className="flex-1 min-w-[200px]">
-          <label className="block text-sm font-medium text-stone-700 mb-1">Bean</label>
+          <label className="block text-sm font-medium text-walnut mb-1">Bean</label>
           <select
             value={beanId}
             onChange={(e) => setBeanId(e.target.value)}
-            className="w-full px-3 py-2 border border-stone-300 rounded-lg bg-white"
+            className="w-full px-3 py-2 border border-walnut/20 rounded-lg bg-cream-pale text-walnut"
           >
             <option value="all">All beans</option>
             {beansWithBrews.map((b) => (
@@ -82,31 +84,31 @@ export default function Trends() {
       ) : (
         <>
           {best && (
-            <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-5">
-              <div className="text-xs uppercase tracking-[0.2em] text-amber-700 font-medium mb-2">Best brew</div>
+            <div className="bg-camel/15 border border-camel/30 rounded-2xl p-5">
+              <div className="text-xs uppercase tracking-[0.2em] text-saddle font-medium mb-2">Best brew</div>
               <div className="flex items-baseline justify-between gap-2 mb-1">
-                <span className="font-serif text-lg text-stone-900">
+                <span className="font-serif text-lg text-walnut">
                   {beans.find((b) => b.id === best.bean_id)?.name || 'Unknown'}
                 </span>
                 <Stars value={best.overall_rating} readOnly size="sm" />
               </div>
-              <p className="text-sm text-stone-700 tabular-nums">
+              <p className="text-sm text-walnut tabular-nums">
                 {best.brew_method === 'espresso'
                   ? `${best.dose_grams}g → ${best.yield_grams}g · ${formatRatio(ratio(best.yield_grams, best.dose_grams))} · ${formatSeconds(best.extraction_time_sec)} · grind ${best.grinder === 'opus2' ? best.grind_decimal : best.grind_integer}`
                   : `${best.coffee_dose_grams}g / ${best.water_grams}g · ${formatRatio(ratio(best.water_grams, best.coffee_dose_grams))} · grind ${Number(best.grind_outer).toFixed(2)} + ${best.grind_inner || 0}`}
               </p>
-              {best.notes && <p className="text-sm text-stone-600 italic mt-1">"{best.notes}"</p>}
+              {best.notes && <p className="text-sm text-toffee italic mt-1">"{best.notes}"</p>}
             </div>
           )}
 
           <ChartCard title="Grind setting over time">
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
-                <XAxis dataKey="idx" stroke="#78716c" fontSize={12} />
-                <YAxis stroke="#78716c" fontSize={12} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#d4c8a8" />
+                <XAxis dataKey="idx" stroke="#936639" fontSize={12} />
+                <YAxis stroke="#936639" fontSize={12} />
                 <Tooltip content={<TrendTooltip />} />
-                <Line type="monotone" dataKey="grind" stroke="#a16207" strokeWidth={2} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="grind" stroke={lineColor} strokeWidth={2} dot={{ r: 3, fill: lineColor }} />
               </LineChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -114,11 +116,11 @@ export default function Trends() {
           <ChartCard title="Brew ratio over time">
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
-                <XAxis dataKey="idx" stroke="#78716c" fontSize={12} />
-                <YAxis stroke="#78716c" fontSize={12} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#d4c8a8" />
+                <XAxis dataKey="idx" stroke="#936639" fontSize={12} />
+                <YAxis stroke="#936639" fontSize={12} />
                 <Tooltip content={<TrendTooltip />} />
-                <Line type="monotone" dataKey="ratio" stroke="#0369a1" strokeWidth={2} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="ratio" stroke="#a68a64" strokeWidth={2} dot={{ r: 3, fill: '#a68a64' }} />
               </LineChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -126,11 +128,11 @@ export default function Trends() {
           <ChartCard title="Rating over time">
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
-                <XAxis dataKey="idx" stroke="#78716c" fontSize={12} />
-                <YAxis domain={[0, 5]} stroke="#78716c" fontSize={12} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#d4c8a8" />
+                <XAxis dataKey="idx" stroke="#936639" fontSize={12} />
+                <YAxis domain={[0, 5]} stroke="#936639" fontSize={12} />
                 <Tooltip content={<TrendTooltip />} />
-                <Line type="monotone" dataKey="rating" stroke="#b45309" strokeWidth={2} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="rating" stroke="#582f0e" strokeWidth={2} dot={{ r: 3, fill: '#582f0e' }} />
               </LineChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -139,11 +141,11 @@ export default function Trends() {
             <ChartCard title="Extraction time vs rating">
               <ResponsiveContainer width="100%" height={240}>
                 <ScatterChart>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
-                  <XAxis dataKey="extraction" name="Time (s)" stroke="#78716c" fontSize={12} label={{ value: 'Seconds', position: 'insideBottom', offset: -5, fill: '#78716c', fontSize: 12 }} />
-                  <YAxis dataKey="rating" name="Rating" domain={[0, 5]} stroke="#78716c" fontSize={12} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#d4c8a8" />
+                  <XAxis dataKey="extraction" name="Time (s)" stroke="#936639" fontSize={12} label={{ value: 'Seconds', position: 'insideBottom', offset: -5, fill: '#936639', fontSize: 12 }} />
+                  <YAxis dataKey="rating" name="Rating" domain={[0, 5]} stroke="#936639" fontSize={12} />
                   <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                  <Scatter data={chartData.filter((d) => d.extraction != null && d.rating != null)} fill="#92400e" />
+                  <Scatter data={chartData.filter((d) => d.extraction != null && d.rating != null)} fill="#7f4f24" />
                 </ScatterChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -158,8 +160,8 @@ export default function Trends() {
 
 function ChartCard({ title, children }) {
   return (
-    <div className="bg-white rounded-2xl border border-stone-200/70 shadow-sm p-5">
-      <h3 className="text-xs uppercase tracking-[0.2em] text-stone-500 font-medium mb-4">{title}</h3>
+    <div className="bg-cream-pale rounded-2xl border border-walnut/10 p-5">
+      <h3 className="text-xs uppercase tracking-[0.2em] text-camel font-medium mb-4">{title}</h3>
       {children}
     </div>
   )
@@ -169,10 +171,10 @@ function TrendTooltip({ active, payload }) {
   if (!active || !payload?.length) return null
   const d = payload[0].payload
   return (
-    <div className="bg-white border border-stone-200 rounded shadow-sm px-3 py-2 text-xs">
-      <div className="text-stone-500">{d.date}</div>
+    <div className="bg-cream-pale border border-walnut/15 rounded shadow-sm px-3 py-2 text-xs">
+      <div className="text-camel">{d.date}</div>
       {payload.map((p) => (
-        <div key={p.dataKey} className="text-stone-800 tabular-nums">
+        <div key={p.dataKey} className="text-walnut tabular-nums">
           {p.dataKey}: {typeof p.value === 'number' ? p.value.toFixed(2) : p.value}
         </div>
       ))}
@@ -186,7 +188,7 @@ function Pill({ active, onClick, children }) {
       type="button"
       onClick={onClick}
       className={`px-4 py-2 rounded-full font-medium text-sm transition-colors ${
-        active ? 'bg-stone-900 text-white shadow-sm' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+        active ? 'bg-ebony text-cream-pale' : 'bg-cream-soft text-walnut/80 hover:bg-cream'
       }`}
     >
       {children}
